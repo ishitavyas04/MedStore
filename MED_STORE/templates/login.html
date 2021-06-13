@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+       
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    .navbar {
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 19px;
+        margin-left: 55px;
+    }
+
+    .mylogin {
+        margin-top: 90px;
+        background-color: whitesmoke;
+        margin-left: 500px;
+        margin-right: 500px;
+        height: 350px;
+        width: 400px;
+    }
+
+    label {
+        float: left;
+        margin-left: 30px;
+      
+    }
+
+    input[type=text] {
+        width: 375px;
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+    input[type=password] {
+        width: 375px;
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+
+    .submit {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        width: 110px;
+        padding: 15px 20px;
+        float: left;
+        font-family: 'Arial Narrow Bold';
+        margin-left: 170px;
+    }
+    hr {
+    width: 20%;
+  }
+
+  .bottom {
+    text-align: center;
+  }
+  .alert{
+      width: 400px;
+  }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Med Store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            
+          </ul>
+        </div>
+    </nav>
+    <div>
+        <center>
+            <form action="login" method="POST" class="mylogin">       
+                <h1 style="border: 1px soild black; width: 400px; height: 50px; background-color: #01bcfa;border-radius: 5px;">Login</h1>
+                {% if error%}
+
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                {% csrf_token %}
+                <label for="email"><b>Email</b></label><br>
+                <input type="text" placeholder="email" name="email" id="email" required>
+                <pre></pre>
+                <label for="password"><b>Password</b></label><br>
+                <input type="password" placeholder="**********" name="password" id="password" required>
+                <pre></pre>
+                <button type="submit" class="submit">Submit</button>
+            </form>
+        </center>
+    </div>
+    <pre>
+
+
+    </pre>
+    <hr>
+    <p class="bottom">&copy; 2020-2050 Med Store
+        <br>
+        <font style="color: #008CBA;">privacy terms and condition</font>
+    </p>
+</body>
+</html>

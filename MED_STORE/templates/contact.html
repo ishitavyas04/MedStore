@@ -1,0 +1,125 @@
+<h1>this is contact</h1>
+value = {
+    'username': username,
+    'first_name': first_name,
+    'last_name': last_name,
+    'mobno': mobno,
+    'email': email,
+    'age': age,
+    'city': city,
+    'address': address
+
+}
+error_message = None
+
+customer = Customer(username=username,
+                    first_name=first_name,
+                    last_name=last_name,
+                    mobno=mobno,
+                    email=email,
+                    password=password,
+                    confirmpassword=confirmpassword,
+                    age=age,
+                    city=city,
+                    address=address)
+
+else:
+    data = {
+        'error': error_message,
+        'values': value
+    }
+    return render(request, 'signup.html', data)
+
+error_message = None
+if (not customer.first_name):
+    error_message = "First Name Required !!"
+elif len(customer.first_name) < 4:
+    error_message = 'First Name must be 4 char long or more'
+elif not customer.last_name:
+    error_message = 'Last Name Required'
+elif len(customer.last_name) < 4:
+    error_message = 'Last Name must be 4 char long or more'
+elif not customer.mobno:
+    error_message = 'Phone Number required'
+elif len(customer.mobno) < 10:
+    error_message = 'Phone Number must be 10 char Long'
+elif len(customer.password) < 6:
+    error_message = 'Password must be 6 char long'
+elif len(customer.confirmpassword) < 6:
+    error_message = 'Password must be 6 char long'
+elif len(customer.email) < 5:
+    error_message = 'Email must be 5 char long'
+elif customer.isExists():
+    error_message = 'Email Address Already Registered..'
+# saving
+
+return error_message
+
+
+if customer:
+flag = check_password(password , customer.password)
+if flag:
+    return redirect('home.html')
+else:
+    error_message = 'Email or Password Invalid'
+else:
+error_message = 'Email or Password Invalid'
+<button><a href="/"><font style="color: white; font-style: italic; font-family: cursive; text-decoration: none;">ADD TO CART</a></font></a></button>
+
+
+button {
+    background-color: #008CBA;
+    width: 150px;
+    height: 50px;
+    color: white;
+    border: none;
+  }
+
+
+  <div class="row">
+
+    <input type="submit" value="-" class="plus">{{product|cart_quantity:request.session.cart}} in cart
+      <form action="/" method="POST">
+        {% csrf_token %}
+        <input hidden type="text" name='product' value='{{product.id}}'>
+        <input type="submit" value="+" class="minus"></label>
+      </form>
+  </div>
+  {{product|cart_quantity:request.session.cart}} in cart
+
+  <div class="row">
+    <form action="/" method="POST">
+      {% csrf_token %}
+      <input hidden type="text" name='product' value='{{product.id}}'>
+      <input type="submit" value="+" class="plus">
+    </form>
+    
+    <form action="/" method="POST">
+      {% csrf_token %}
+      <input hidden type="text" name='product' value='{{product.id}}'>
+      <input type="submit" value="-" class="plus"> 
+    </form>
+  </div>
+
+  .row {
+    display: inline-block;
+    background-color: white;
+    border: 1px solid whitesmoke;
+    width: 200px;
+    height: 40px;
+    margin-left: 30px;
+    text-align: center;
+  }
+
+  .plus {
+    background-color: grey;
+    height: 40px;
+    width: 50px;
+    margin-right: 90px;
+  }
+
+  .minus {
+    background-color: grey;
+    height: 40px;
+    width: 50px;
+  }

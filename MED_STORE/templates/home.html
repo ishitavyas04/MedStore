@@ -1,0 +1,274 @@
+{% load static %}
+
+{% load cart %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOME PAGE</title>
+</head>
+<style>
+  .container1 {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .container1 img {
+    vertical-align: middle;
+
+  }
+
+  .container1 .content {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 70%;
+    padding: 225px;
+  }
+
+  .top {
+    position: absolute;
+    top: 2px;
+    left: 45px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .mid {
+    position: absolute;
+    top: 5px;
+    right: 45px;
+
+  }
+
+  .navbar {
+    display: inline-block;
+
+  }
+
+  .navbar li {
+    display: inline-block;
+  }
+
+  .navbar li a {
+    text-decoration: none;
+    padding: 34px 23px;
+    color: black;
+    font-size: 20px;
+  }
+
+  .navbar li a:hover,
+  .navbar li a.active {
+
+    color: orangered;
+  }
+
+  .instructor1 {
+    display: inline-block;
+    border: 1px solid ghostwhite;
+    margin-left: 90px;
+    margin-top: 10px;
+
+  }
+
+  hr {
+    width: 50%;
+  }
+
+  .bottom {
+    text-align: center;
+  }
+
+  .dropdown {
+    float: left;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .dropdown .dropbtn {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: 'Times New Roman', Times, serif;
+    margin-right: 0px;
+    margin-top: -15px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-width: 160px;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+  .addtocart {
+    background-color: #008CBA;
+    color: white;
+    font-style: italic;
+    font-family: cursive;
+    text-align: center;
+    margin-left: -10pxpx;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+  }
+.row{
+  border: 1px solid white;
+}
+  .rowcart {
+    display: inline-block;
+    
+  }
+
+  .plus {
+    width: 80px;
+    height: 40px;
+    color: white;
+    font-size: large;
+    background-color: #008CBA;
+  }
+
+  .minus {
+    width: 80px;
+    height: 40px;
+    color: white;
+    font-size: large;
+    background-color:#008CBA;
+  }
+  }
+</style>
+
+<body>
+  {% csrf_token %}
+  <div class="container1">
+    <img src="{% static 'myimage/medical retail.jpg'%}" alt="workout image" width="100%" height="750">
+    <div class="content">
+      <p style="color: black;">
+      <h2>Welcome to Arogye Store!</h2>
+      </p>
+      <h1>Our only Aim to <br>Making You more healthy</h1>
+      <pre> </pre>
+      <p>GET STARTED&nbsp;&nbsp;&nbsp;<font
+          style="color: orangered; border:1px solid black ; padding: 12px; background-color: rgba(0, 0, 0, 0.5);">
+          Keep Buying</font>
+      </p>
+    </div>
+    <div class="logo">
+      <h1 class="top">MED STORE</h1>
+    </div>
+    <div class="mid">
+      <ul class="navbar">
+        {% if request.session.customer %}
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="/order">Order</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="/signup">SignUp</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="/malaria">Malaria</a>
+            <a href="/view">Cold & Cough</a>
+            <a href="/diabetic">Diabetic</a>
+            <a href="/cancer">Cancer</a>
+            <a href="/typhoid">Typhoid</a>
+            <a href="/thyroid">Thyroid</a>
+          </div>
+        </div>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <h2 style="text-align: center; color: black;">Medicines</h2>
+  {% for product in products%}
+  <div class="instructor1" id={{product.id}}>
+    <div>
+      <img src="{{product.img.url}}" alt="" width="330px" height="250px">
+      <p>
+        <font style="font-size: x-large; font-family: bold;">{{product.name}}</font><br>
+        <font style="color: black"><b>Price:{{product.price}}</b></font>
+      <pre></pre>
+      <font style="color: chocolate">Description:{{product.description}}</font>
+      </p>
+      <!-- {{product | is_in_cart:request.session.cart}}-->
+    </div>
+    <div>
+      {% if product|is_in_cart:request.session.cart %}
+      <center>
+        <div class="row">
+          <div class="rowcart">
+            <form action="/#{{product.id}}" class="col-2 " method="post">
+              {% csrf_token %}
+              <input hidden type="text" name='product' value='{{product.id}}'>
+              <input hidden type="text" name='remove' value='True'>
+              <input type="submit" value=" - " class="minus">
+            </form>
+          </div>
+          <div class="rowcart" style="font-size: large; font-family: italic;">{{product|cart_quantity:request.session.cart}} in Cart</div>
+          <div class="rowcart">
+            <form action="/#{{product.id}}" class="col-2 " method="post">
+              {% csrf_token %}
+              <input hidden type="text" name='product' value='{{product.id}}'>
+              <input type="submit" value=" + " class="plus">
+            </form>
+          </div>
+      </center>
+    </div>
+
+
+  </div>
+  {% else %}
+  <form action="/" method="POST">
+    {% csrf_token %}
+    <input hidden type="text" name='product' value='{{product.id}}'>
+    <input type="submit" class="addtocart" value=" ADD TO CART">
+  </form>
+  {% endif %}
+  </div>
+
+  </div>
+
+  {%endfor%}
+  <pre>
+
+
+    </pre>
+  <hr>
+  <p class="bottom">&copy; 2020-2050 Med Store
+    <br>
+    <font style="color: #008CBA;">privacy terms and condition</font>
+  </p>
+</body>
+
+</html>

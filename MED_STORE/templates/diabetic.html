@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        margin-left: 350px;
+        margin-top: 80px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 300px;
+        /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+
+    }
+
+    #context {
+        margin-top: 100px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button {
+        background-color: #008CBA;
+        width: 180px;
+        height: 50px;
+        color: white;
+        border: none;
+    }
+
+    .navbar {
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 19px;
+        margin-left: 55px;
+    }
+    hr {
+    width: 50%;
+  }
+
+  .bottom {
+    text-align: center;
+  }
+</style>
+
+<body>
+    <div class="navbar">
+        <a class="logo"
+            style="font-size: x-large; font-family: 'Times New Roman', Times, serif; color: orange;float: left;">Med
+            Store</a>
+        <a href="/home">Home</a>
+        <a href="/about">About</a>
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
+        <a href="/contact">Logout</a>
+    </div>
+    {% csrf_token %}
+    <div class="row">
+        <div class="column" style="background-color:white">
+            <img src="{% static 'myimage/diabetic.jpg'%}" alt="" width="300px" height="350px">
+        </div>
+
+        <div class="column" id="context" style="background-color:white; font-size: medium;">
+            <h2>Glimepiride , Metformin Glymon</h2>
+            <pre>
+
+            </pre>
+            <h3>Brand: Solace
+                <pre></pre> MRP:700
+                <pre></pre> Discount:20.00%
+                <pre></pre>
+                Shop:Arogye Store</h3>
+
+        </div>
+    </div>
+    <pre>
+
+
+
+    </pre>
+
+    <div
+        style="font-family: Verdana, Geneva, Tahoma, sans-serif; margin-left: 400px; color: black; font-family: Arial, Helvetica, sans-serif;">
+        <h2 style="color: chocolate;">Abouts:</h2>
+        <p><b>Glumin 5 mg/500 mg Tablet belongs to a category of medicines known as anti-diabetic drugs.<br>
+             It is a combination of two medicines used to treat type 2 diabetes mellitus in adults.<br>
+             It helps control blood sugar levels in people with diabetes.</b></p>
+
+    </div>
+    <pre>
+
+
+    </pre>
+  <hr>
+  <p class="bottom">&copy; 2020-2050 Med Store
+    <br>
+    <font style="color: #008CBA;">privacy terms and condition</font>
+  </p>
+</body>
+
+</html>`
